@@ -1,0 +1,235 @@
+{
+  "profile": "tabular-data-package",
+  "name": "anonlabels-product-dataset",
+  "title": "anonlabels Product Dataset",
+  "description": "Barcode-aligned US grocery labels and packaging photography for barcode-scan and label-extraction evaluation.",
+  "licenses": [
+    {
+      "name": "ODbL-1.0",
+      "path": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "title": "Open Database License v1.0 \u2014 applies to anonlabels_full_200.csv"
+    },
+    {
+      "name": "CC0-1.0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "CC0 1.0 \u2014 applies to anonlabels_core_65.csv"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Open Food Facts",
+      "path": "https://world.openfoodfacts.org",
+      "email": ""
+    }
+  ],
+  "resources": [
+    {
+      "name": "anonlabels-full-200",
+      "path": "anonlabels_full_200.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": [
+          "Barcode"
+        ],
+        "fields": [
+          {
+            "name": "Barcode",
+            "type": "string",
+            "title": "Barcode as printed",
+            "description": "STRING. Leading zeros are significant \u2014 never parse as an integer.",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "^[0-9]{8}$|^[0-9]{12,13}$"
+            }
+          },
+          {
+            "name": "gtin14",
+            "type": "string",
+            "title": "Canonical GTIN-14",
+            "description": "Barcode zero-padded to 14 digits. Use this for joins across sources.",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "^[0-9]{14}$"
+            }
+          },
+          {
+            "name": "barcode_format",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "enum": [
+                "UPC-A",
+                "EAN-13",
+                "UPC-E",
+                "short-code-unverified"
+              ]
+            }
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "Brand",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "ingredients",
+            "type": "array",
+            "description": "JSON array of ingredient strings in package order."
+          },
+          {
+            "name": "Nutrition facts",
+            "type": "object",
+            "description": "JSON object. Values retain printed units as strings."
+          },
+          {
+            "name": "Image url",
+            "type": "string",
+            "format": "uri"
+          },
+          {
+            "name": "Source",
+            "type": "string",
+            "description": "Retailer the product was found at."
+          },
+          {
+            "name": "health_profile",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "net_quantity",
+            "type": "string",
+            "description": "Tilde prefix means derived, not printed."
+          },
+          {
+            "name": "provenance",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "enum": [
+                "own-photography",
+                "openfoodfacts"
+              ]
+            }
+          },
+          {
+            "name": "source_url",
+            "type": "string",
+            "description": "OFF product page. Empty for own-photography rows."
+          },
+          {
+            "name": "images_available",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "enum": [
+                "yes",
+                "no"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "anonlabels-core-65",
+      "path": "anonlabels_core_65.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": [
+          "Barcode"
+        ],
+        "fields": [
+          {
+            "name": "Barcode",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true
+            }
+          },
+          {
+            "name": "gtin14",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true
+            }
+          },
+          {
+            "name": "barcode_format",
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "name": "Brand",
+            "type": "string"
+          },
+          {
+            "name": "ingredients",
+            "type": "array"
+          },
+          {
+            "name": "Nutrition facts",
+            "type": "object"
+          },
+          {
+            "name": "Image url",
+            "type": "string",
+            "format": "uri"
+          },
+          {
+            "name": "Source",
+            "type": "string"
+          },
+          {
+            "name": "health_profile",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "net_quantity",
+            "type": "string"
+          },
+          {
+            "name": "provenance",
+            "type": "string"
+          },
+          {
+            "name": "source_url",
+            "type": "string"
+          },
+          {
+            "name": "images_available",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
