@@ -15,7 +15,7 @@ Files: labels200.csv (full corpus), labels65_handtranscribed.csv
 tests), monte_carlo.py (RQ3 risk composition, seed 20260824),
 allergen_omission.py (paired database-path omission analysis).
 
-The deployed application is publicly listed on a mobile app store; the store
+The deployed application is publicly listed; the store
 listing is likewise withheld for anonymity and available to the chairs on
 request.
 
